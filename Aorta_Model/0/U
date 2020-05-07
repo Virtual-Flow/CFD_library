@@ -1,0 +1,85 @@
+/*-------------------------------------------------------------------------------------------------------------*\
+|                                                                                                               | 
+|                                                                                                               | 
+|                                                                                                               | 
+|                                                                                                               | 
+\*-------------------------------------------------------------------------------------------------------------*/
+
+
+
+FoamFile
+{
+	version 2.0;
+	format binary;
+	class volVectorField;
+	location "";
+	object U;
+}
+/*---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+
+dimensions [0 1 -1 0 0 0 0];
+
+internalField uniform ( 0. 0. 0. );
+
+
+boundaryField
+{
+	walls
+	{
+		type fixedValue;
+		value	 uniform (0. 0. 0.);
+	}
+
+	inlet
+	{
+		type surfaceNormalFixedValue;
+		refValue uniform -0.0001;
+	}
+
+	outlet
+	{
+		type inletOutlet;
+		inletValue uniform (0. 0. 0.);
+		value	 uniform (0. 0. 0.);
+	}
+
+	outlet_1
+	{
+		type fixedValue;
+		value	 uniform (0. 0. 0.);
+	}
+
+	outelet_2
+	{
+		type fixedValue;
+		value	 uniform (0. 0. 0.);
+	}
+
+	outlet_3
+	{
+		type fixedValue;
+		value	 uniform (0. 0. 0.);
+	}
+
+	outlet_5
+	{
+		type fixedValue;
+		value	 uniform (0. 0. 0.);
+	}
+
+	outlet_4
+	{
+		type fixedValue;
+		value	 uniform (0. 0. 0.);
+	}
+
+	outlet_6
+	{
+		type fixedValue;
+		value	 uniform (0. 0. 0.);
+	}
+
+
+}

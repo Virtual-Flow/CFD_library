@@ -1,0 +1,85 @@
+/*-------------------------------------------------------------------------------------------------------------*\
+|                                                                                                               | 
+|                                                                                                               | 
+|                                                                                                               | 
+|                                                                                                               | 
+\*-------------------------------------------------------------------------------------------------------------*/
+
+
+
+FoamFile
+{
+	version 2.0;
+	format binary;
+	class volScalarField;
+	location "";
+	object omega;
+}
+/*---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+
+dimensions [0 0 -1 0 0 0 0];
+
+internalField uniform 0.01;
+
+
+boundaryField
+{
+	walls
+	{
+		type omegaWallFunction;
+		value uniform 0.01;
+	}
+
+	inlet
+	{
+		type fixedValue;
+		value uniform 0.01;
+	}
+
+	outlet
+	{
+		type inletOutlet;
+		value uniform 8.938;
+		inletValue uniform 8.938;
+	}
+
+	outlet_1
+	{
+		type omegaWallFunction;
+		value uniform 0.01;
+	}
+
+	outelet_2
+	{
+		type omegaWallFunction;
+		value uniform 0.01;
+	}
+
+	outlet_3
+	{
+		type omegaWallFunction;
+		value uniform 0.01;
+	}
+
+	outlet_5
+	{
+		type omegaWallFunction;
+		value uniform 0.01;
+	}
+
+	outlet_4
+	{
+		type omegaWallFunction;
+		value uniform 0.01;
+	}
+
+	outlet_6
+	{
+		type omegaWallFunction;
+		value uniform 0.01;
+	}
+
+
+}
