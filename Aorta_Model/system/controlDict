@@ -1,0 +1,120 @@
+/*-------------------------------------------------------------------------------------------------------------*\
+|                                                                                                               | 
+|                                                                                                               | 
+|                                                                                                               | 
+|                                                                                                               | 
+\*-------------------------------------------------------------------------------------------------------------*/
+
+
+
+FoamFile
+{
+	version 2.0;
+	format binary;
+	class dictionary;
+	location "";
+	object controlDict;
+}
+/*---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+libs
+(
+
+);
+
+application pimpleFoam;
+
+startFrom startTime;
+
+startTime	0.;
+
+stopAt endTime;
+
+endTime	300.;
+
+deltaT 	1e-8;
+
+writeControl runTime;
+
+writeInterval	0.0001;
+
+//purgeWrite	2;
+
+writeFormat	binary;
+
+writePrecision	6;
+
+writeCompression	uncompressed;
+
+timeFormat	general;
+
+timePrecision	6;
+
+graphFormat	raw;
+
+runTimeModifiable	yes;
+
+adjustTimeStep	yes;
+
+maxCo	1.;
+
+maxAlphaCo	1.;
+
+maxDeltaT	1.;
+
+functions {
+	residuals
+	{
+		functionObjectLibs ( "libutilityFunctionObjects.so" );
+		type residuals;
+		 enabled true;
+		log true;
+		writeControl timeStep;
+		writeInterval 1;
+		fields
+		(
+			p
+			U
+			k
+			omega
+			nut
+		);
+	}
+	force_coefs
+	{
+		type forceCoeffs;
+		functionObjectLibs ( "libforces.so" );
+		writeControl timeStep;
+		writeInterval 1;
+		patches
+		(
+			walls
+		);
+		log true;
+		UName U;
+		rho rhoInf;
+		pRef 0.;
+		rhoInf 1.205;
+		CofR  (0. 0. 0.);
+		liftDir (0. 0. 1.);
+		dragDir (1. 0. 0.);
+		pitchAxis (0. 1. 0.);
+		magUInf 3.;
+		lRef 0.001;
+		Aref 1.E-6;
+	}
+	min_max_velocity
+	{
+		type fieldMinMax;
+		functionObjectLibs ( "libfieldFunctionObjects.so" );
+		writeControl timeStep;
+		writeInterval 1;
+		log true;
+		mode magnitude;
+		fields
+		(
+			U
+		);
+	}
+}
